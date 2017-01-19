@@ -1,0 +1,31 @@
+Resources:
+  CyberDuckUser:
+    Type: 'AWS::IAM::User'
+    Properties:
+      UserName: 'CyberDuck'
+      Policies:
+        - PolicyName: 'accessWarrenMiscFiles'
+          PolicyDocument:
+            Statement:
+            - Action:
+              - 's3:AbortMultipartUpload'
+              - 's3:GetBucketLocation'
+              - 's3:GetObject'
+              - 's3:ListBucket'
+              - 's3:ListBucketMultipartUploads'
+              - 's3:PutObject'
+              Effect: 'Allow'
+              Resources:
+              - "Fn::Join":
+                - ''
+                - - 'arn:aws:s3:::'
+                  - Ref: 'WarrenMiscFiles'
+              - "Fn::Join":
+                - ''
+                - - 'arn:aws:s3:::'
+                  - Ref: 'WarrenMiscFiles'
+                  - '/*'
+  WarrenMiscFiles:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: 'warren.misc.files'
