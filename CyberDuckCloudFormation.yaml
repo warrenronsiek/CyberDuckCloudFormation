@@ -17,6 +17,7 @@ Resources:
             - s3:ListBucket
             - s3:ListBucketMultipartUploads
             - s3:PutObject
+            - s3:DeleteObject
             Resource:
             - Fn::Join:
               - ''
