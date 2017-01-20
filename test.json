@@ -10,6 +10,8 @@
             "PolicyDocument": {
               "Statement": [
                 {
+                  "Sid": "Stmt1484874527000",
+                  "Effect": "Allow",
                   "Action": [
                     "s3:AbortMultipartUpload",
                     "s3:GetBucketLocation",
@@ -18,8 +20,7 @@
                     "s3:ListBucketMultipartUploads",
                     "s3:PutObject"
                   ],
-                  "Effect": "Allow",
-                  "Resources": [
+                  "Resource": [
                     {
                       "Fn::Join": [
                         "",
@@ -27,7 +28,8 @@
                           "arn:aws:s3:::",
                           {
                             "Ref": "WarrenMiscFiles"
-                          }
+                          },
+                          "/*"
                         ]
                       ]
                     },
@@ -38,8 +40,7 @@
                           "arn:aws:s3:::",
                           {
                             "Ref": "WarrenMiscFiles"
-                          },
-                          "/*"
+                          }
                         ]
                       ]
                     }
