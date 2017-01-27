@@ -8,8 +8,7 @@ Resources:
       - PolicyName: accessWarrenMiscFiles
         PolicyDocument:
           Statement:
-          - Sid: Stmt1484874527000
-            Effect: Allow
+          - Effect: Allow
             Action:
             - s3:AbortMultipartUpload
             - s3:GetBucketLocation
@@ -32,3 +31,10 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: warren.misc.files
+      LifecycleConfiguration:
+        Rules:
+        - Id: GlacierRule
+          Status: Enabled
+          Transitions:
+          - TransitionInDays: '1'
+            StorageClass: Glacier
